@@ -12,6 +12,13 @@
 ```py
 from datetime import datetime
 
+# File: src/exceptions.py
+
+class DuplicateItemError(Exception):
+    
+    def __init__(self, message="Duplicate item added"):
+        super().__init__(message)
+
 # File: src/receipt.py
 class Receipt:
     """
@@ -149,6 +156,8 @@ print(receipt.total_price)
 #### Item Tests
 
 ```py
+# File: tests/test_item.py
+
 # Test that the Item class is constructed properly
 item = Item("Pizza", 1.00, True)
 assert item.name == "Pizza"
@@ -171,4 +180,79 @@ assert item.is_available() is False
 
 item.make_available()
 assert item.is_available() is True
+```
+
+#### Menu Tests
+
+```py
+# File: tests/test_menu.py
+
+# Test that the Menu task constructs properly and loads the data
+# from menu_items.json
+menu = Menu()
+file = open("test_data.json")
+data = json.load(file)
+file.close()
+
+assert len(menu.get_all_items()) == len(data)
+
+# Test the add_new_item method
+
+menu = Menu()
+item = Item("Curry", 4.00, True)
+menu.add_new_item(item)
+
+assert item in menu.get_all_items()
+
+# Test adding a duplicate item
+
+menu = Menu()
+item = Item("Kebab", 5.00, True)
+
+menu.add_new_item(item)
+
+with pytest.raises(DuplicateItemError) as e:
+    menu.add_new_item(item)
+
+assert str(e.value) == "Duplicate item added"
+
+# Test get_available_items
+
+menu = Menu()
+file = open("test_data.json")
+data = json.load(file)
+file.close()
+
+data_available = list(filter(lambda e: e["available"], data))
+menu_available_items = menu.get_available_items()
+
+assert all(item in menu_available_items for item in data_available)
+
+# Test get_unavailable_items
+menu = Menu()
+file = open("test_data.json")
+data = json.load(file)
+file.close()
+
+data_unavailable = list(filter(lambda e: not e["available"], data))
+menu_unavailable_items = menu.get_unavailable_items()
+
+assert all(item in menu_unavailable_items for item in data_unavailable)
+
+# Test get by name
+
+menu = Menu()
+item = Item("Kebab", 5.00, True)
+menu.add_new_item(item)
+
+result = menu.get_by_name("kebab")
+
+assert result == item
+
+# Test create order:
+
+menu = Menu()
+order = menu.create_order()
+
+assert isinstance(order, Order)
 ```
