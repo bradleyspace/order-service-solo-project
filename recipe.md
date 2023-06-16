@@ -139,4 +139,7 @@ item_1 = menu.get_by_name("Pizza")
 item_2 = menu.get_by_name("Chips")
 order.add(item_1)
 order.add(item_2)
+
+receipt = order.checkout("+44 09876 54321")
+print(receipt.total_price)
 ```
