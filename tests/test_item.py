@@ -21,6 +21,7 @@ def test_init_with_dict():
     assert isinstance(item_dict, dict)
 
     item = Item.from_dict(item_dict)
+
     assert item.name == item_dict.get("name")
     assert item.price == item_dict.get("price")
     assert item.is_available() == item_dict.get("available")
