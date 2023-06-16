@@ -55,27 +55,33 @@ class Menu:
     """
     
     def __init__(self) -> None:
+        """This function will open test_data/menu_items.json and add the items from there."""
         pass
     
     def add_new_item(self, item) -> None:
+        """Add a new item to the list"""
         pass
     
     def get_all_items(self) -> list[Item]:
+        """Return a list of all the items"""
         pass
     
     def get_available_items(self) -> list[Item]:
+        """Returns a list of items that are marked as availale"""
         pass
     
     def get_unavailable_items(self) -> list[Item]:
+        """Return a list of items that are marked as not available"""
         pass
     
     def get_by_name(self, name) -> Item:
+        """Get a item by its name"""
         pass
         
     def create_order(self, item) -> Order:
         """
         Create a new order.
-        Simply to prevent instantiating classes, you can have one entry point.
+        Simply to prevent instantiating classes, you can have one entry file.
         """
         pass
 
@@ -91,13 +97,15 @@ class Order:
         pass
 
     def add_item(self, item) -> None:
+        """Add an item to your order"""
         pass
     
     def remove_item(self, item) -> None:
+        """Remove an item from your order"""
         pass
     
-    def checkout(self) -> Receipt:
-        # 
+    def checkout(self, phone_number: str) -> Receipt:
+        """Finalize the order, generate a receipt and send a SMS to your  phone"""
         pass
 
     def get_estimated_arrival_time(self) -> datetime:
@@ -105,4 +113,25 @@ class Order:
 
     def _send_order_sms_confirmation(self):
         pass
+```
+
+### Examples
+
+```py
+menu = Menu() # Create a menu instance
+order = menu.create_order() # Start a new order (Returns a instance of Order)
+item = menu.get_by_name("Pizza") # Get an item
+order.add(item) # Add the item to the order
+receipt = order.checkout("+44 1234 567890") # Checkout with your phone number and get the receipt.
+
+print(receipt.total_price)
+```
+```py
+# Alternatively you can construct an order without using Menu.create_order
+menu = Menu()
+order = Order()
+item_1 = menu.get_by_name("Pizza")
+item_2 = menu.get_by_name("Chips")
+order.add(item_1)
+order.add(item_2)
 ```
