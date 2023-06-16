@@ -6,8 +6,14 @@ class Item:
     available: A boolean representing whether the item is available or not
     """
 
-    def __init__(self, item, price, available) -> None:
+    def __init__(self, name, price, available) -> None:
         pass
+
+    @classmethod
+    def from_dict(cls, _dict: dict):
+        # Construct an Item from a dict
+        pass
+
 
     def make_available(self):
         """
