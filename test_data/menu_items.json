@@ -1,4 +1,10 @@
-[
-  {},
-  {}
-]
+[{
+    "name": "Pizza",
+    "price": 15.99,
+    "available": true
+  },
+  {
+    "name": "Chips",
+    "price": "2.50",
+    "available": true
+}]
