@@ -42,3 +42,4 @@ class Menu:
         Create a new order.
         Simply to prevent instantiating classes, you can have one entry point.
         """
+        return Order()
