@@ -7,21 +7,30 @@ class Item:
     """
 
     def __init__(self, name: str, price: float, available: bool) -> None:
-        pass
+        self.name = name
+        self.price = price
+        self.available = available
 
     @classmethod
     def from_dict(cls, _dict: dict):
         # Construct an Item from a dict
-        pass
+        return cls(
+            _dict["name"],
+            _dict["price"],
+            _dict["available"]
+        )
+
+    def is_available(self) -> bool:
+        return self.available
 
     def make_available(self):
         """
         Make an item available to order
         """
-        pass
+        self.available = True
 
     def make_unavailable(self):
         """
         Make an item unavailable to order.
         """
-        pass
+        self.available = False
