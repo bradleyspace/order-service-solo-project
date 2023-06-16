@@ -35,6 +35,11 @@ class Item:
     def __init__(self, item, price, available) -> None:
         pass
     
+    @classmethod
+    def from_dict(cls, _dict: dict):
+        # Construct an Item from a dict
+        pass
+    
     def make_available(self):
         """
         Make an item available to order
