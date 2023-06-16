@@ -35,6 +35,7 @@ def test_add_duplicate_item():
 
     assert str(e.value) == "Duplicate item added"
 
+
 def test_get_available_items():
     menu = Menu()
 
