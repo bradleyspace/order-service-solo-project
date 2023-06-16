@@ -1,3 +1,6 @@
+from datetime import datetime
+from .receipt import Receipt
+
 class Order:
     """
     Instance variables:
