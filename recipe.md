@@ -143,3 +143,32 @@ order.add(item_2)
 receipt = order.checkout("+44 09876 54321")
 print(receipt.total_price)
 ```
+
+### Tests
+
+#### Item Tests
+
+```py
+# Test that the Item class is constructed properly
+item = Item("Pizza", 1.00, True)
+assert item.name == "Pizza"
+assert item.price == 1.00
+assert item.is_available() is True
+
+# Test that the Item.from_dict constructs properly
+
+item = Item.from_dict({"name": "Pizza", "price": 1.00, "available": True})
+assert item.name == "Pizza"
+assert item.price == 1.00
+assert item.is_available() is True
+
+# Test that make_available and make_unavailable works as intended
+
+item = Item("Pizza", 1.00, True)
+
+item.make_unavailable()
+assert item.is_available() is False
+
+item.make_available()
+assert item.is_available() is True
+```
