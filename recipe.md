@@ -256,3 +256,36 @@ order = menu.create_order()
 
 assert isinstance(order, Order)
 ```
+
+### Order Tests
+
+```py 
+
+# Test initially empty and incomplete
+order = Order()
+assert len(order.items) == 0
+assert not order.completed
+
+# Test add item
+
+item = Mock()
+order = Order()
+order.add_item(item)
+assert item in order.items
+
+# Test remove item
+
+item = Mock()
+order = Order()
+order.add_item(item)
+
+order.remove_item(item)
+assert item not in order.items
+
+# Test Checkout
+
+fake_item_1 = Mock()
+fake_item_2 = Mock()
+
+
+```

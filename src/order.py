@@ -21,7 +21,7 @@ class Order:
         #
         pass
 
-    def get_estimated_arrival_time(self) -> datetime:
+    def _get_estimated_arrival_time(self) -> datetime:
         pass
 
     def _send_order_sms_confirmation(self):
