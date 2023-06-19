@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from .receipt import Receipt
 
 class Order:
@@ -9,19 +9,26 @@ class Order:
     """
 
     def __init__(self) -> None:
-        pass
+        self.items = []
+        self.completed = False
 
     def add_item(self, item) -> None:
-        pass
+        self.items.append(item)
 
     def remove_item(self, item) -> None:
-        pass
+        self.items.remove(item)
 
     def checkout(self, _send_sms=True) -> Receipt:
-        pass
+        if len(self.items) == 0:
+            raise Exception("Attempted checkout with 0 items.")
+        total_price = sum([item.price for item in self.items])
+        return Receipt(self.items, total_price)
 
     def _get_estimated_arrival_time(self) -> datetime:
-        pass
+        if self.completed:
+            raise Exception("Order is not completed")
+
+        return datetime.now() + timedelta(minutes=30)
 
     def _send_order_sms_confirmation(self):
         pass
