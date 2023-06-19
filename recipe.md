@@ -286,6 +286,17 @@ assert item not in order.items
 
 fake_item_1 = Mock()
 fake_item_2 = Mock()
+fake_item_1.name = "Pizza"
+fake_item_2.name = "Chips"
+fake_item_1.price = 9.99
+fake_item_2.price = 2.99
 
+order = Order()
 
+order.add_item(fake_item_1)
+order.add_item(fake_item_2)
+
+receipt = order.checkout()
+
+assert isinstance(receipt, Receipt)
 ```

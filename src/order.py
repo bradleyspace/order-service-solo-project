@@ -17,8 +17,7 @@ class Order:
     def remove_item(self, item) -> None:
         pass
 
-    def checkout(self) -> Receipt:
-        #
+    def checkout(self, _send_sms=True) -> Receipt:
         pass
 
     def _get_estimated_arrival_time(self) -> datetime:
